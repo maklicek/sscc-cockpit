@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <title>SSCC Cockpit</title>
+</head>
+<body>
+  <h1>SSCC Cockpit Panel</h1>
+  <button onclick="loadSummary()">Shrnutí</button>
+  <pre id="summary"></pre>
+
+  <script>
+    function loadSummary() {
+      fetch('SSCC_ExportCZ/Shrnutí.txt')
+        .then(response => response.text())
+        .then(text => {
+          document.getElementById('summary').textContent = text;
+        })
+        .catch(error => {
+          document.getElementById('summary').textContent = 'Soubor se nepodařilo načíst.';
+        });
+    }
+  </script>
+</body>
+</html>
